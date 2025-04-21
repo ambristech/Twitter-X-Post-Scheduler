@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X Bulk Scheduler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .post-container {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1DA1F2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0d95e8;
+        }
+        #add-post {
+            background-color: #28a745;
+        }
+        #add-post:hover {
+            background-color: #218838;
+        }
+        .csv-upload {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>X Bulk Scheduler</h1>
+    <form id="post-form" action="schedule.php" method="POST" enctype="multipart/form-data">
+        <div class="csv-upload">
+            <label for="csv-file">Upload CSV (Optional):</label>
+            <input type="file" id="csv-file" name="csv_file" accept=".csv">
+        </div>
+        <div id="posts-container">
+            <div class="post-container">
+                <textarea name="posts[0][text]" placeholder="Enter your post (280 chars max)" maxlength="280" required></textarea>
+                <input type="datetime-local" name="posts[0][schedule_time]" required>
+            </div>
+        </div>
+        <button type="button" id="add-post">Add Another Post</button>
+        <button type="submit">Schedule Posts</button>
+    </form>
+
+    <script>
+        let postCount = 1;
+        document.getElementById('add-post').addEventListener('click', () => {
+            const container = document.getElementById('posts-container');
+            const newPost = document.createElement('div');
+            newPost.className = 'post-container';
+            newPost.innerHTML = `
+                <textarea name="posts[${postCount}][text]" placeholder="Enter your post (280 chars max)" maxlength="280" required></textarea>
+                <input type="datetime-local" name="posts[${postCount}][schedule_time]" required>
+            `;
+            container.appendChild(newPost);
+            postCount++;
+        });
+    </script>
+</body>
+</html>
