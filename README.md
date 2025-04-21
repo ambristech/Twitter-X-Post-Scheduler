@@ -7,6 +7,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/yourusername/x-scheduler?style=social)](https://github.com/yourusername/x-scheduler/stargazers)
 
 Welcome to **X Post Scheduler**, a **PHP-based tool** built on **XAMPP** to schedule and auto-post to X using the X API! 📅✨ Crafted with 💻 . This project is your go-to for automating X posts like a pro! 😎
+<img src="images/x multiple posts scheduler.jpg">
 
 ## 📝 What is X Post Scheduler?
 
